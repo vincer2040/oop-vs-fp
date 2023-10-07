@@ -21,7 +21,9 @@ export class DynamicBuffer {
         this.ins += 1;
     }
 
-    public reset(): void {
+    protected memset0(): void {
+        this.ins = 0;
+        this.buf.fill(0);
     }
 
     public out(): Buffer {
