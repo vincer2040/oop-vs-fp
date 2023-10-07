@@ -4,7 +4,7 @@ import { TypeBytes } from "./typeBytes";
 import { isDigit, isLetter } from "utils";
 
 export class Lexer {
-    private input: Buffer;
+    private readonly input: Buffer;
     private pos: number;
     private inputLen: number;
     private ch: number;
