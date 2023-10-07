@@ -1,0 +1,20 @@
+{
+    "name": "utils",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/utils.js",
+    "module": "dist/utils.mjs",
+    "types": "dist/utils.d.ts",
+    "scripts": {
+        "build": "tsup src/utils.ts --format cjs,esm --dts",
+        "lint": "tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.8.3",
+        "tsup": "^7.2.0",
+        "typescript": "^5.2.2"
+    }
+}

@@ -13,6 +13,10 @@ importers:
         version: 1.10.15
 
   oop:
+    dependencies:
+      utils:
+        specifier: workspace:*
+        version: link:../utils
     devDependencies:
       '@types/node':
         specifier: ^20.8.3
@@ -26,6 +30,18 @@ importers:
       vitest:
         specifier: ^0.34.6
         version: 0.34.6
+
+  utils:
+    devDependencies:
+      '@types/node':
+        specifier: ^20.8.3
+        version: 20.8.3
+      tsup:
+        specifier: ^7.2.0
+        version: 7.2.0(typescript@5.2.2)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
 
 packages:
 
