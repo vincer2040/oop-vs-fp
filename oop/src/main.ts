@@ -1,6 +1,11 @@
 import { Server, Socket } from "net";
 import { Lexer } from "./lexer";
 import { Parser } from "./parser";
+import { Evaluator } from "./evaluator";
+import { CommandRunner } from "./cmd";
+import { ProtocolBuilder } from "./protocolBuilder";
+
+const db: Map<string, string> = new Map();
 
 function main() {
     const server = new Server();
@@ -13,12 +18,16 @@ function main() {
 }
 
 function onConnect(socket: Socket) {
+    let builder = new ProtocolBuilder();
     socket.on("data", (data: Buffer) => {
         let l = new Lexer(data);
         let p = new Parser(l);
         let val = p.parse();
-        console.log(val);
-        socket.write(Buffer.from("ok"));
+        let cmd = Evaluator.evaluate(val);
+        let buf = CommandRunner
+            .getInstance(cmd, builder)
+            .run(db);
+        socket.write(buf);
     });
 
     socket.on("end", () => {
