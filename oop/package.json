@@ -6,6 +6,7 @@
     "module": "dist/main.mjs",
     "scripts": {
         "build": "tsup src/main.ts --format cjs,esm",
+        "start": "pnpm run build && node ./dist/main.js",
         "dev": "vitest",
         "lint": "tsc",
         "test": "vitest run"

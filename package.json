@@ -5,6 +5,7 @@
   "scripts": {
       "build": "turbo build",
       "test": "turbo test",
+      "start": "turbo start",
       "dev": "turbo dev"
   },
   "keywords": [],
