@@ -39,6 +39,13 @@ export class ProtocolBuilder extends DynamicBuffer {
         return this;
     }
 
+    public addPong(): ProtocolBuilder {
+        this.addTypeByte(TypeBytes.Simple);
+        this.addString("PONG");
+        this.addEnd();
+        return this;
+    }
+
     public addOk(): ProtocolBuilder {
         this.addTypeByte(TypeBytes.Simple);
         this.addString("OK");
