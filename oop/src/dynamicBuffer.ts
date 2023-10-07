@@ -11,18 +11,14 @@ export class DynamicBuffer {
         this.buf = Buffer.alloc(this.cap);
     }
 
-    protected addByte(byte: number): boolean {
+    protected addByte(byte: number) {
         if (this.ins === this.cap) {
             const newCapacity = this.cap * 2;
-            if (!this.realloc(newCapacity)) {
-                return false;
-            }
+            this.realloc(newCapacity);
         }
 
         this.buf[this.ins] = byte;
         this.ins += 1;
-
-        return true;
     }
 
     public reset(): void {
@@ -40,16 +36,10 @@ export class DynamicBuffer {
         return this.ins;
     }
 
-    private realloc(newCapacity: number): boolean {
-        let newBuffer: Buffer;
-        try {
-            newBuffer = Buffer.alloc(newCapacity);
-        } catch (_) {
-            return false;
-        }
+    private realloc(newCapacity: number) {
+        let newBuffer = Buffer.alloc(newCapacity);
         this.buf.copy(newBuffer);
         this.buf = newBuffer;
         this.cap = newCapacity;
-        return true;
     }
 }
