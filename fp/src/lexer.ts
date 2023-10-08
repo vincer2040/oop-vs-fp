@@ -23,42 +23,39 @@ export function createLexer(input: Buffer): Lexer {
 }
 
 export function nextToken(l: Lexer): [Lexer, Token] {
-    const tok: Token = { type: TokenType.Illegal, literal: null };
+    let tok: Token;
     switch (l.ch) {
         case TypeBytes.Array:
-            tok.type = TokenType.ArrayType;
+            tok = { type: TokenType.ArrayType, literal: null };
             break;
         case TypeBytes.Bulk:
-            tok.type = TokenType.BulkType;
+            tok = { type: TokenType.BulkType, literal: null };
             break;
         case TypeBytes.Simple:
             const preNew = readChar(l);
-            tok.type = TokenType.Simple;
             const [newLexer, literal] = readString(preNew);
-            tok.literal = literal;
+            tok = { type: TokenType.Simple, literal: literal };
             return [newLexer, tok];
         case TypeBytes.RetCar:
-            tok.type = TokenType.RetCar;
+            tok = { type: TokenType.RetCar, literal: null };
             break;
         case TypeBytes.NewL:
-            tok.type = TokenType.NewL;
+            tok = { type: TokenType.NewL, literal: null };
             break;
         case TypeBytes.Eof:
-            tok.type = TokenType.Eof;
+            tok = { type: TokenType.Eof, literal: null };
             break;
         default:
             if (isLetter(l.ch)) {
-                tok.type = TokenType.Bulk;
                 const [newLexer, literal] = readString(l);
-                tok.literal = literal;
+                tok = { type: TokenType.Bulk, literal: literal };
                 return [newLexer, tok];
             } else if (isDigit(l.ch)) {
-                tok.type = TokenType.Len;
                 const [newLexer, literal] = readLen(l);
-                tok.literal = literal;
+                tok = { type: TokenType.Len, literal: literal };
                 return [newLexer, tok];
             } else {
-                tok.type = TokenType.Illegal;
+                tok = { type: TokenType.Illegal, literal: null };
             }
             break;
     }
