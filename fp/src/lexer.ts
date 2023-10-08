@@ -34,9 +34,8 @@ export function nextToken(l: Lexer): [Lexer, Token] {
         case TypeBytes.Simple:
             const preNew = readChar(l);
             tok.type = TokenType.Simple;
-            const [newl, literal] = readString(preNew);
+            const [newLexer, literal] = readString(preNew);
             tok.literal = literal;
-            const newLexer = readChar(newl);
             return [newLexer, tok];
         case TypeBytes.RetCar:
             tok.type = TokenType.RetCar;
