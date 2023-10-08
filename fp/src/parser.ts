@@ -32,12 +32,12 @@ export function parse(p: Parser): [Parser, Value] {
                 return [endp1, { type: ValueType.Invalid, data: null }];
             }
             const bulk = endp1.cur?.literal as string;
-            const [isEnd2, isend2] = expectEnd(endp1);
+            const [endp2, isend2] = expectEnd(endp1);
             if (!isend2) {
-                return [isEnd2, { type: ValueType.Invalid, data: null }];
+                return [endp2, { type: ValueType.Invalid, data: null }];
             }
             val = { type: ValueType.BulkString, data: bulk };
-            newP = isEnd2;
+            newP = endp2;
         } break;
         case TokenType.ArrayType: {
             let arr: Value[] = [];
