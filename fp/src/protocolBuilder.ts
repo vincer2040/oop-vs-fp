@@ -22,6 +22,24 @@ export function addArray(b: ProtocolBuilder, len: number): ProtocolBuilder {
     return addEnd(withLen);
 }
 
+export function addPong(b: ProtocolBuilder): ProtocolBuilder {
+    const withType = addByte(b, TypeBytes.Simple);
+    const withSimple = addString(withType, "PONG");
+    return addEnd(withSimple);
+}
+
+export function addOk(b: ProtocolBuilder): ProtocolBuilder {
+    const withType = addByte(b, TypeBytes.Simple);
+    const withSimple = addString(withType, "OK");
+    return addEnd(withSimple);
+}
+
+export function addNone(b: ProtocolBuilder): ProtocolBuilder {
+    const withType = addByte(b, TypeBytes.Simple);
+    const withSimple = addString(withType, "NONE");
+    return addEnd(withSimple);
+}
+
 export function out(b: ProtocolBuilder): Buffer {
     return dbout(b);
 }
