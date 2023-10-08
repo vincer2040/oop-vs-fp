@@ -1,4 +1,3 @@
-
 export enum TokenType {
     Illegal,
     Simple,
