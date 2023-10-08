@@ -4,10 +4,10 @@ import { TypeBytes } from "./typeBytes";
 import { isDigit, isLetter } from "utils";
 
 export type Lexer = {
-    input: Buffer,
-    pos: number,
-    input_len: number,
-    ch: number,
+    readonly input: Buffer,
+    readonly pos: number,
+    readonly input_len: number,
+    readonly ch: number,
 }
 
 export function createLexer(input: Buffer): Lexer {

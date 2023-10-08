@@ -1,9 +1,9 @@
 const DEFAULT_INITIAL_CAPACITY: number = 32;
 
 export type DynamicBuffer = {
-    buffer: Buffer,
-    ins: number,
-    cap: number,
+    readonly buffer: Buffer,
+    readonly ins: number,
+    readonly cap: number,
 };
 
 export function createDynamicBuffer(initialCapacity?: number): DynamicBuffer {
@@ -28,7 +28,7 @@ export function addByte(db: DynamicBuffer, byte: number): DynamicBuffer {
     }
 }
 
-export function out(db: DynamicBuffer): Buffer {
+export function dbout(db: DynamicBuffer): Buffer {
     return db.buffer;
 }
 

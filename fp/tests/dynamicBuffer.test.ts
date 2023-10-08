@@ -1,4 +1,4 @@
-import { createDynamicBuffer, addByte, out } from "../src/dynamicBuffer";
+import { createDynamicBuffer, addByte, dbout } from "../src/dynamicBuffer";
 import { describe, it, expect } from "vitest"
 
 describe("dynamicBuffer", () => {
@@ -8,7 +8,7 @@ describe("dynamicBuffer", () => {
         db = addByte(db, "a".charCodeAt(0));
         db = addByte(db, "a".charCodeAt(0));
         db = addByte(db, "a".charCodeAt(0));
-        const buf = out(db).filter((x) => x !== 0);
+        const buf = dbout(db).filter((x) => x !== 0);
         const exp = Buffer.from("aaaa");
         expect(buf).toEqual(exp);
     });
