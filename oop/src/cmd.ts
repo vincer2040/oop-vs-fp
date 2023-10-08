@@ -1,6 +1,5 @@
 import { ProtocolBuilder } from "./protocolBuilder";
 
-
 export enum CmdType {
     Inv,
     Ping,
